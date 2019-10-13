@@ -1,0 +1,60 @@
+<div class="example-container">
+  <mat-toolbar color="primary" class="example-toolbar">
+    <mat-toolbar-row *ngIf="authenticationService.state" >
+      <button mat-icon-button>
+        <mat-icon (click)="toggle();" style="margin: 10px;">menu</mat-icon>
+      </button>
+      <h1>StsTakip</h1>
+       <div fxShow="true" fxHide.lt-md>
+        <a mat-button [routerLink]="'/home'"> Accounts </a>
+        <a mat-button [routerLink]="'/create-account'"> Create Account </a>
+        <a mat-button [routerLink]="'/contacts'"> Contacts </a>
+        <a mat-button [routerLink]="'/create-contact'"> Create Contact </a>
+        <a mat-button [routerLink]="'/activities'"> Activities </a>
+        <a mat-button [routerLink]="'/create-activity'"> Create Activity </a>
+      </div>
+
+      <span class="example-fill-remaining-space"></span>
+      <mat-icon (click)="logOut()" routerLink="/login">logout</mat-icon>
+
+
+    </mat-toolbar-row>
+
+  </mat-toolbar>
+  <mat-sidenav-container  >
+    <mat-sidenav #sidenav [opened]="true" mode="side" *ngIf="authenticationService.state"  >
+      <mat-nav-list>
+        <mat-list-item>
+          <mat-icon mat-list-icon>person_add</mat-icon>
+          <h4 mat-line *ngIf="isExpanded" [@slideIn]>Account</h4>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>assignment</mat-icon>
+          <h4 mat-line *ngIf="isExpanded" [@slideIn]>Create Account</h4>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>domain</mat-icon>
+          <h4 mat-line *ngIf="isExpanded" [@slideIn]>Contacts</h4>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>folder_shared</mat-icon>
+          <h4 mat-line *ngIf="isExpanded" [@slideIn]>Activity X</h4>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>bug_report</mat-icon>
+          <h4 mat-line *ngIf="isExpanded" [@slideIn]>Raporlama</h4>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill >
+
+      <div *ngIf="!authenticationService.state">
+        <app-home></app-home>
+        <router-outlet></router-outlet>
+      </div>
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+
+</div>
