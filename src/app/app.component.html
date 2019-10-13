@@ -1,8 +1,8 @@
 <div class="example-container">
   <mat-toolbar color="primary" class="example-toolbar">
-    <mat-toolbar-row *ngIf="authenticationService.state" >
-      <button mat-icon-button>
-        <mat-icon (click)="toggle();" style="margin: 10px;">menu</mat-icon>
+    <mat-toolbar-row >
+      <button mat-icon-button  *ngIf="authenticationService.state">
+        <mat-icon (click)="toggle();" style="margin: 10px;" >menu</mat-icon>
       </button>
       <h1>StsTakip</h1>
        <div fxShow="true" fxHide.lt-md>
@@ -48,8 +48,8 @@
     </mat-sidenav>
     <mat-sidenav-content fxFlexFill >
 
-      <div *ngIf="!authenticationService.state">
-        <app-home></app-home>
+      <div style="height: 92vh;">
+
         <router-outlet></router-outlet>
       </div>
 
