@@ -1,13 +1,13 @@
-<div class="example-container">
+<div class="example-container" >
   <mat-toolbar color="primary" class="example-toolbar">
     <mat-toolbar-row >
       <button mat-icon-button  *ngIf="authenticationService.state">
         <mat-icon (click)="toggle();" style="margin: 10px;" >menu</mat-icon>
       </button>
-      <h1>StsTakip</h1>
+      <h1 *ngIf="authenticationService.state">StsTakip</h1>
        <div fxShow="true" fxHide.lt-md>
         <a mat-button [routerLink]="'/home'"> Accounts </a>
-        <a mat-button [routerLink]="'/create-account'"> Create Account </a>
+        <a mat-button [routerLink]="'/register'"> Create Account </a>
         <a mat-button [routerLink]="'/contacts'"> Contacts </a>
         <a mat-button [routerLink]="'/create-contact'"> Create Contact </a>
         <a mat-button [routerLink]="'/activities'"> Activities </a>
@@ -15,13 +15,21 @@
       </div>
 
       <span class="example-fill-remaining-space"></span>
-      <mat-icon (click)="logOut()" routerLink="/login">logout</mat-icon>
+      <div *ngIf="authenticationService.state">
+        <span (click)="logOut()">logout</span>
+
+      </div>
+      <div *ngIf="!authenticationService.state">
+
+        <span  routerLink="/login">login</span>
+
+      </div>
 
 
     </mat-toolbar-row>
 
   </mat-toolbar>
-  <mat-sidenav-container  >
+  <mat-sidenav-container>
     <mat-sidenav #sidenav [opened]="true" mode="side" *ngIf="authenticationService.state"  >
       <mat-nav-list>
         <mat-list-item>

@@ -27,7 +27,7 @@ export class AppComponent {
 
   constructor(private authenticationService: AuthenticationService ) {
     this.isExpanded = false;
-    this.authenticationService.state = true;
+    this.authenticationService.state = false;
 
 
 
@@ -40,5 +40,6 @@ this.authenticationService.logout();
 console.log(this.authenticationService.state);
 
     }
+
 
 }
