@@ -1,10 +1,10 @@
 <div class="example-container" >
   <mat-toolbar color="primary" class="example-toolbar">
     <mat-toolbar-row >
-      <button mat-icon-button  *ngIf="authenticationService.state">
+      <button mat-icon-button  *ngIf="authenticationService.isLoginSuccess()">
         <mat-icon (click)="toggle();" style="margin: 10px;" >menu</mat-icon>
       </button>
-      <h1 *ngIf="authenticationService.state">StsTakip</h1>
+      <h1 *ngIf="authenticationService.isLoginSuccess()">StsTakip</h1>
        <div fxShow="true" fxHide.lt-md>
         <a mat-button [routerLink]="'/home'"> Accounts </a>
         <a mat-button [routerLink]="'/register'"> Create Account </a>
@@ -15,11 +15,11 @@
       </div>
 
       <span class="example-fill-remaining-space"></span>
-      <div *ngIf="authenticationService.state">
+      <div *ngIf="authenticationService.isLoginSuccess()">
         <span (click)="logOut()">logout</span>
 
       </div>
-      <div *ngIf="!authenticationService.state">
+      <div *ngIf="!authenticationService.isLoginSuccess()">
 
         <span  routerLink="/login">login</span>
 
@@ -30,7 +30,7 @@
 
   </mat-toolbar>
   <mat-sidenav-container>
-    <mat-sidenav #sidenav [opened]="true" mode="side" *ngIf="authenticationService.state"  >
+    <mat-sidenav #sidenav [opened]="true" mode="push" *ngIf="authenticationService.isLoginSuccess()"  >
       <mat-nav-list>
         <mat-list-item>
           <mat-icon mat-list-icon>person_add</mat-icon>
@@ -56,9 +56,15 @@
     </mat-sidenav>
     <mat-sidenav-content fxFlexFill >
 
-      <div style="height: 92vh;">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5 mat-elevation-z18">
+            <router-outlet></router-outlet>
 
-        <router-outlet></router-outlet>
+          </div>
+
+        </div>
+
       </div>
 
     </mat-sidenav-content>

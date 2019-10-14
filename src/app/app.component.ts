@@ -27,10 +27,6 @@ export class AppComponent {
 
   constructor(private authenticationService: AuthenticationService ) {
     this.isExpanded = false;
-    this.authenticationService.state = false;
-
-
-
   }
   toggle() {
     this.isExpanded = !this.isExpanded;
